@@ -10,6 +10,7 @@
     "aaxios": "^0.18.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
+    "formik": "^2.2.6",
     "node-sass": "^6.0.0",
     "query-string": "^7.0.0",
     "react": "^17.0.2",

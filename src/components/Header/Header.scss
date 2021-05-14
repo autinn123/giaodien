@@ -1,6 +1,8 @@
 .header {
     padding: 1rem 0;
     font-size: 1.25rem;
+    background-color: #ccc;
+    
     
   
     &__title {
@@ -8,9 +10,10 @@
     }
   
     &__link {
-      color: #000;
+      color: #fff;
       transition: all 0.25s ease-in-out 0s;
       text-decoration: none;
+      margin-left: 2rem;
   
       &--active,
       &:hover {

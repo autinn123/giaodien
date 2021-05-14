@@ -3,6 +3,7 @@ import { Link, NavLink, useHistory } from 'react-router-dom'
 import { Button, Card, CardBody, Container, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
 import { login } from '../../../../actions/authAction'
 import { useDispatch, useSelector } from 'react-redux';
+import { clearError } from '../../../../actions/errorAction';
 
 
 export default function Login() {
@@ -10,24 +11,29 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const error = useSelector(state => state.error)
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-  const [msg, setMsg] = useState(null)
+  const [msgErr, setMsgErr] = useState(null)
+  const [msgSucc, setMsgSuccc] = useState(null)
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const handleEmailChange = (e) => setEmail(e.target.value)
+    
   const handlePassChange = (e) => setPassword(e.target.value)
   const handleSubmit = (e) => {
     e.preventDefault()
+    dispatch(clearError())
     const user = {
       email, password
     }
-
     dispatch(login(user))
   }
   useEffect(() => {
     if (error.id === 'LOGIN_FAIL') {
-      setMsg(error.msg.msg);
+      setMsgErr(error.msg.msg);
     } else {
-      setMsg(null);
+      if(isAuthenticated) {
+        history.push('/')
+      }
     }
   }, [error, isAuthenticated])
   return (
@@ -36,7 +42,8 @@ export default function Login() {
         <Card>
           <CardBody>
             <h2 className="text-center mb-4">Sign in</h2>
-            {msg ? <Alert color="danger">{msg}</Alert> : null}
+            {msgErr ? <Alert color="danger">{msgErr}</Alert> : null}
+            {msgSucc ? <Alert color="success">{msgSucc}</Alert> : null}
             <Form onSubmit={handleSubmit}>
               <FormGroup >
                 <Label className="mb-2" for="email">Email</Label>
