@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Button, Card, CardBody, Container, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
 import { register } from '../../../../actions/authAction'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 
 export default function Signup() {
@@ -61,13 +62,16 @@ export default function Signup() {
                                 <Input id="password" type="password" onChange={handlePassChange} />
                             </FormGroup>
                             <FormGroup >
-                                <Label className="mb-2" for="passwordCon">Password</Label>
+                                <Label className="mb-2" for="passwordCon">Confirm Password</Label>
                                 <Input id="passwordCon" type="password" onChange={handlePassConChange} />
                             </FormGroup>
                             <Button color="primary" className="w-100 mt-4" type="submit">Sign up</Button>
                         </Form>
                     </CardBody>
                 </Card>
+                <div className="w-100 text-center mt-2">
+                    Already have an account? <Link to="/login">Log In</Link>
+                </div>
             </div>
         </Container>
     )

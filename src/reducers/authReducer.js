@@ -50,8 +50,7 @@ import {
                    isAuthenticated: false,
                    isLoading: false     
                 }
-            
-                
+             
             default: 
             return state
         }
