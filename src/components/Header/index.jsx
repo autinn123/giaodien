@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Col, Container, NavItem, Row } from 'reactstrap'
 import { logout } from '../../actions/authAction'
-import Logout from '../../features/Auth/components/Logout'
+import Logout from '../../features/Auth/pages/Logout'
 import './Header.scss'
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
     const authLinks = (
         <Col xs="auto">
             <NavLink exact className="header__link" to="#" >
-               {user ? `Welcome ${user.name}` : ''}
+               {user ? `Welcome ${user.username}` : ''}
             </NavLink>
             <NavLink exact onClick={handleClick}  className="header__link" to="#">
                     Logout

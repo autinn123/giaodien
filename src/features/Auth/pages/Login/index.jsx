@@ -4,6 +4,7 @@ import { Button, Card, CardBody, Container, Form, FormGroup, Input, Label, Alert
 import { login } from '../../../../actions/authAction'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError } from '../../../../actions/errorAction';
+import LoginForm from '../../components/LoginForm';
 
 
 export default function Login() {
@@ -19,13 +20,10 @@ export default function Login() {
   const handleEmailChange = (e) => setEmail(e.target.value)
     
   const handlePassChange = (e) => setPassword(e.target.value)
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (value) => {
+
     dispatch(clearError())
-    const user = {
-      email, password
-    }
-    dispatch(login(user))
+    dispatch(login(value))
   }
   useEffect(() => {
     if (error.id === 'LOGIN_FAIL') {
@@ -44,17 +42,7 @@ export default function Login() {
             <h2 className="text-center mb-4">Sign in</h2>
             {msgErr ? <Alert color="danger">{msgErr}</Alert> : null}
             {msgSucc ? <Alert color="success">{msgSucc}</Alert> : null}
-            <Form onSubmit={handleSubmit}>
-              <FormGroup >
-                <Label className="mb-2" for="email">Email</Label>
-                <Input id="email" type="email" onChange={handleEmailChange} />
-              </FormGroup>
-              <FormGroup >
-                <Label className="mb-2" for="password">Password</Label>
-                <Input id="password" type="password" onChange={handlePassChange} />
-              </FormGroup>
-              <Button color="primary" className="w-100 mt-4" type="submit">Sign in</Button>
-            </Form>
+            <LoginForm onSubmit={handleSubmit} />
           </CardBody>
         </Card>
         <div className="w-100 text-center mt-2">

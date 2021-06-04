@@ -8,8 +8,8 @@ import { loadUser } from './actions/authAction';
 
 
 const HomePage = React.lazy(() => import('./features/HomePage'));
-const Login = React.lazy(() => import('./features/Auth/components/Login'));
-const Signup = React.lazy(() => import('./features/Auth/components/Signup'));
+const Login = React.lazy(() => import('./features/Auth/pages/Login'));
+const Signup = React.lazy(() => import('./features/Auth/pages/Signup'));
 
 function App() {
   useEffect(() => {
